@@ -33,8 +33,8 @@ fn set_branch(repo: &Repository, name: &str) {
 }
 
 fn clean_up(_ctx: &Context) {
-  let target_repository = env::var("TARGE_REPOSITORY").unwrap();
-  info!("Clean-up command {}", target_repository);
+  let target_repository = env::current_dir().unwrap();
+  info!("Clean-up command {:?}", target_repository);
   let repo = match Repository::open(target_repository) {
     Ok(repo) => repo,
     Err(e) => panic!("failed to open: {}", e),
